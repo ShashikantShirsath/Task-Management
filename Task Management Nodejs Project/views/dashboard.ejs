@@ -1,0 +1,61 @@
+<%- include("./modules/header.ejs") %>
+
+    <div class="container-fluid">
+        <form method="get" action="/tasks/dashboard/add">
+            <button>add task</button>
+        </form>
+
+        <form method="post" action="/tasks/taskById">
+            <label for="taskid">Select Task By It's ID:</label>
+            <select id="taskid" name="id" required>
+                <% for( let task of tasks ) { %>
+                    <option value="<%= task._id %>"><%= task._id %></option>
+                <% } %>
+            </select>
+            <button>Select</button>
+        </form>
+
+        <table class="table table-hover mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let count = 1 %>
+                <% for( let task of tasks) { %>
+                    <tr>
+                        <th scope="row"><%= count++ %></th>
+                        <td><%= task.title %></td>
+                        <td><%= task.desc %></td>
+                        <td><%= task.status %></td>
+                        <td><%= task.created_at.toString().split(" ").slice(0,4).join(" ") %></td>
+                        <td><%= task.end_at.toString().split(" ").slice(0,4).join(" ") %></td>
+                        <td>
+                            <form method="get" action="/tasks/<%= task._id %>/update" class="action-form">
+                                <button class="action-btn">edit</button>
+                            </form>
+                            <form method="post" action="/tasks/<%= task._id %>?_method=DELETE" class="action-form">
+                                <button class="action-btn">delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- <span class="home">Welcome to <br> Billing Software</span> -->
+    </body>
+
+    </html>

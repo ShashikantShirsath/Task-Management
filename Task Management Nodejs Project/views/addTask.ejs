@@ -1,0 +1,34 @@
+<%- include("./modules/header.ejs") %>
+
+    <div class="container-fluid">
+        <div class="main Registration">
+            <h2>Add Task</h2>
+            <form method="post" action="/tasks/addTask">
+                <label for="title">title:</label>
+                <input type="text" id="title" name="title" required />
+
+                <label for="desc">Description:</label>
+                <input type="text" id="desc" name="desc" required />
+
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Pending" name="Pending">
+                        Pending
+                    </option>
+                    <option value="In Progress" name="In Progress">
+                        In Progress
+                    </option>
+                    <option value="Completed" name="Completed">
+                        Completed
+                    </option>
+                </select>
+                
+                <button type="submit" class="addUser">
+                    Add Task
+                </button>
+            </form>
+        </div>
+    </div>
+    </body>
+
+    </html>

@@ -83,6 +83,10 @@ app.post("/tasks/taskById", async (req, res) => {
 });
 
 // add task route
+app.get("/tasks/dashboard/add", (req, res) => {
+    res.render("addTask.ejs");
+});
+
 app.post("/tasks/addTask", (req, res) => {
     let {title, desc, status} = req.body;
     let task = new Task({ title : title, desc : desc, status : status, created_at : new Date(), end_at : new Date(), });
@@ -95,11 +99,6 @@ app.post("/tasks/addTask", (req, res) => {
     });
 
     res.redirect("/tasks/dashboard");
-});
-
-//add task route
-app.get("/tasks/dashboard/add", (req, res) => {
-    res.render("addTask.ejs");
 });
 
 //edit route

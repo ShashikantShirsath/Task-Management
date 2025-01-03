@@ -27,6 +27,7 @@
         app.all("*", (req, res, next) => {
             res.status(404).send("Page not found!");
         });
+        
     2) error handling middleware
         app.use((err, req, res, next) => {
             let {status = 500, message= "Something wen't wrong!"} = err;

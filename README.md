@@ -21,3 +21,14 @@
     8) /tasks/:id/update    (edit task route)
     9) /tasks/:id      (update task route)
     10) /tasks/:id     (delete task route)
+
+# 5.Error Handling Middlewares
+    1) middleware for all unknown routes handling
+        app.all("*", (req, res, next) => {
+            res.status(404).send("Page not found!");
+        });
+    2) error handling middleware
+        app.use((err, req, res, next) => {
+            let {status = 500, message= "Something wen't wrong!"} = err;
+            res.status(status).send(message);
+        });
